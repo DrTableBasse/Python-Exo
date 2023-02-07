@@ -2,6 +2,7 @@ import subprocess
 import math
 from decimal import Decimal
 from tqdm import tqdm
+import webbrowser
 
 def factorielExo3(valeur):
     chiffre = 1
@@ -24,7 +25,6 @@ def F1(x,n):
     resultatF1 = x**n / Decimal(factoriel(n))
     return(resultatF1)
 
-
 def somme(valeur):
     chiffre = 1
     valeurTabI= []
@@ -35,6 +35,8 @@ def somme(valeur):
     print(" * ".join(map(str, valeurTabI)), " = ", chiffre)
     print(chiffre, "= "," * ".join(map(str, valeurTabI[::-1])))
 
+
+
 def exercice1() :
 
     print("Choisissez un caractère de l'alphabet : ")
@@ -42,7 +44,9 @@ def exercice1() :
     print("Choisissez un chiffre compris entre 0 et 127 : ")
     numero = input()
 
-    
+    #On doit vérifier si la personne ne met qu'un seul caractère et non plusieurs charactères sinon ça plante totalement.
+    #Pour faire chaque caractère d'une chaîne de caractère, il faudrait parser chaque élément de la chaîne et faire une boucle 
+    #égal à la taille du tableau que l'on va créer.
     try:
         if len(charactere) == 1:
             print(charactere + " est égal à " + str(ord(charactere)) +"\n")
@@ -81,11 +85,23 @@ def exercice2():
     
     #lancement du programme avec tkinter 
     subprocess.run(["python", "src/tkinter/trapeze.py"])
+    print("Pour recommencer, taper 1. \n Pour revenir au menur précédent, taper 2 \n")
+    choix = input("Entre votre choix ici : ")
+    if choix == "1" : 
+        exercice2()
+    else :
+        main_menu()
 
 def exercice3():
     valeur = int(input("Veuillez saisir une valeur pour faire le factoriel et la somme de cette dernière :  \n"))
     factorielExo3(valeur)
     somme(valeur)
+    print("Pour recommencer, taper 1. \n Pour revenir au menur précédent, taper 2 \n")
+    choix = input("Entre votre choix ici : ")
+    if choix == "1" : 
+        exercice3()
+    else :
+        main_menu()
     
 def exercice4():
     hauteur = int(input("Hauteur de l'arbre : "))
@@ -94,17 +110,31 @@ def exercice4():
 
     for i in range(1,3):
         print("{}{}{}".format("=" * (hauteur - 2), "*" * 3, "=" * (hauteur - 2)))
+    print("Pour recommencer, taper 1. \n Pour revenir au menur précédent, taper 2 \n")
+    choix = input("Entre votre choix ici : ")
+    if choix == "1" : 
+        exercice4()
+    else :
+        main_menu()
 
 def exercice5():
     valeur = int(input("Veuillez saisir une valeur : "))
+    #Il est pas possible de faire le log d'une valeur négative donc except-block
     try:
         if valeur >0:
             print("Le Logarithme népérien de ", valeur, " est : Ln(",valeur,") = ", math.log(valeur))
     except ValueError:
         print("Il est pas possible de calculer le logarithme népérien pour une valeur négative")
-        
+    #calcul cosinus et sinus de la valeur
     print("Le cosinus de ", valeur, " est : cos(",valeur,") = ", math.cos(valeur))
     print("Le sinus de ", valeur, " est : sin(",valeur,") = ", math.sin(valeur))
+    
+    print("Pour recommencer, taper 1. \n Pour revenir au menur précédent, taper 2 \n")
+    choix = input("Entre votre choix ici : ")
+    if choix == "1" : 
+        exercice5()
+    else :
+        main_menu()
 
 def exercice6():
     valeur = int(input("Veuillez rentrer une valeur pour n : "))
@@ -148,11 +178,7 @@ def exercice6():
         exercice6()
     else :
         main_menu()
-    
-    
-   
-    
-    
+       
 def exercice7():
     valeur= (int(input("Veuillez saisir une valeur pour n : ")))
     U0 = 1
@@ -165,7 +191,13 @@ def exercice7():
     
     print("Valeur de la suite Un où n = ",valeur,"= ",Un)
     print("Valeur de la suite Vn où n = ",valeur,"= ",Vn)
-
+    
+    print("Pour recommencer, taper 1. \n Pour revenir au menur précédent, taper 2 \n")
+    choix = input("Entre votre choix ici : ")
+    if choix == "1" : 
+        exercice7()
+    else :
+        main_menu()
 
 def exercice8():
     n = int(input("Saisir la valeur de n :  "))
@@ -176,10 +208,14 @@ def exercice8():
     Y = FactoN / (factoriel(p) * FactoNP)
     print(X)
     print(Y)
-    
-    
-
-
+    print("Pour recommencer, taper 1. \n Pour revenir au menur précédent, taper 2 \n")
+    choix = input("Entre votre choix ici : ")
+    if choix == "1" : 
+        exercice8()
+    else :
+        main_menu()
+ 
+   
 def main_menu():
 
     print("Bienvenue au Menu Principal du TP1\n")
@@ -191,6 +227,7 @@ def main_menu():
     print("Pour accéder au sixième exercice, taper 6\n")
     print("Pour accéder au septième exercice, taper 7\n")
     print("Pour accéder au huitième exercice, taper 8\n")
+    #print("Pour accéder au neuvième exercice, taper 9\n")
     print("Sinon retourner au menu principal, taper 0\n")
 
 
